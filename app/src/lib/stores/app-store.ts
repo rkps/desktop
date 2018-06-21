@@ -130,7 +130,6 @@ import { IRemote, ForkedRemotePrefix } from '../../models/remote'
 import { IAuthor } from '../../models/author'
 import { ComparisonCache } from '../comparison-cache'
 import { AheadBehindUpdater } from './helpers/ahead-behind-updater'
-import { enableCompareSidebar } from '../feature-flag'
 import {
   ApplicationTheme,
   getPersistedTheme,
@@ -1096,10 +1095,7 @@ export class AppStore extends TypedBaseStore<IAppState> {
     this.startBackgroundFetching(repository, !previouslySelectedRepository)
     this.startPullRequestUpdater(repository)
 
-    if (enableCompareSidebar()) {
-      this.startAheadBehindUpdater(repository)
-    }
-
+    this.startAheadBehindUpdater(repository)
     this.refreshMentionables(repository)
 
     this.addUpstreamRemoteIfNeeded(repository)
