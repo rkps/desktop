@@ -1,0 +1,12 @@
+open(FILE, "<format.dat");
+@lines = <FILE>;
+close(FILE);
+
+foreach (@lines) {
+    chop;
+    ($album, $artist, $price) = (split(/!/));
+    $album  = "" if !defined($album);
+    $artist = "" if !defined($artist);
+    $price  = "" if !defined($price);
+    print("Album=$album   Artist=$artist   Price=$price\n");
+}
